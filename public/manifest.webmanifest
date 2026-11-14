@@ -1,0 +1,18 @@
+{
+  "name": "FinPilot – Personal Finance Manager",
+  "short_name": "FinPilot",
+  "description": "Track transactions, budgets, savings goals and financial health with FinPilot.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F7F8FC",
+  "theme_color": "#7667E8",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
