@@ -4,6 +4,7 @@ import { auth, db } from "./firebase";
 import {
   addDoc,
   collection,
+  collectionGroup,
   deleteDoc,
   doc,
   getDocs,
@@ -935,6 +936,119 @@ body[data-finpilot-theme="dark"] .modal .cancel-button { background:#292C43 !imp
 .app-shell.theme-dark .bank-demo-success { background:#173D38; color:#7CE0C2; }
 @media(max-width:1050px) { .bank-demo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:700px) { .bank-demo-grid { grid-template-columns:1fr; } }
+
+/* Refined grouped navigation */
+.nav-list { display:grid !important; grid-template-columns:minmax(0,1fr); align-content:start; gap:8px !important; max-height:calc(100vh - 260px) !important; min-height:0 !important; padding:0 2px 8px; }
+.nav-group { min-width:0; }
+.nav-group-toggle { width:100%; display:flex; align-items:center; gap:10px; border:1px solid transparent; border-radius:10px; padding:10px 11px; background:transparent; color:#70778B; text-align:left; font:700 12px 'DM Sans',sans-serif; transition:background .18s ease,color .18s ease,border-color .18s ease; }
+.nav-group-toggle:hover,.nav-group-toggle.contains-active { background:#F3F1FF; color:#6656D5; }
+.nav-group-icon { width:20px; text-align:center; font-size:16px; color:#8173E8; }
+.nav-group-name { flex:1; min-width:0; }
+.nav-group-chevron { color:#A3A7B7; font-size:17px; line-height:1; transform:rotate(-90deg); transition:transform .18s ease; }
+.nav-group-chevron.expanded { transform:rotate(0deg); }
+.nav-sublist { display:grid; gap:3px; padding:4px 0 5px 10px; margin-left:9px; border-left:1px solid #E9E6FC; }
+.nav-button.nav-sub-button { padding:9px 10px; gap:10px; font-size:12px; border-radius:9px; }
+.nav-button.nav-sub-button .nav-icon { width:18px; font-size:15px; }
+.nav-group-single .nav-button { padding:11px 12px; }
+.app-shell.theme-dark .nav-group-toggle { color:#B8BCD0; }
+.app-shell.theme-dark .nav-group-toggle:hover,.app-shell.theme-dark .nav-group-toggle.contains-active { background:#302C50; color:#D0CAFF; }
+.app-shell.theme-dark .nav-sublist { border-left-color:#4A456D; }
+@media(max-width:800px) {
+  .nav-list { grid-template-columns:repeat(2,minmax(0,1fr)) !important; max-height:none !important; overflow:visible !important; }
+  .sidebar { gap:8px; }
+  .nav-group-toggle { font-size:12px; padding:10px 9px; }
+}
+@media(max-width:480px) { .nav-list { grid-template-columns:1fr !important; } }
+
+/* More expressive statistics and chart colour */
+.stat-card { border-top:4px solid var(--stat-accent,#7667E8) !important; background:linear-gradient(145deg,var(--stat-tint,#EFEDFF) 0%,#FFFFFF 76%) !important; box-shadow:0 8px 22px rgba(44,49,84,.045); transition:transform .18s ease,box-shadow .18s ease; }
+.stat-card:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(44,49,84,.085); }
+.stat-card .stat-icon { box-shadow:inset 0 0 0 1px rgba(255,255,255,.72),0 4px 12px rgba(25,35,65,.08); }
+.bar-chart { border-radius:13px; background-image:linear-gradient(to top,rgba(112,120,150,.09) 1px,transparent 1px); background-size:100% 25%; padding-left:10px; padding-right:10px; }
+.bar { min-width:14px; border-radius:7px 7px 3px 3px; box-shadow:0 4px 10px rgba(39,48,85,.12); transition:height .3s ease,filter .2s ease; }
+.bar:hover { filter:saturate(1.25) brightness(1.04); }
+.bar.income-bar { background:linear-gradient(180deg,#5EEAD4 0%,#0D9488 100%) !important; }
+.bar.expense-bar { background:linear-gradient(180deg,#FDA4AF 0%,#F43F5E 100%) !important; }
+.chart-legend .legend-dot { box-shadow:0 0 0 3px rgba(120,120,160,.09); }
+.category-list .progress-track { height:7px; background:#EEF0F7; }
+.category-list .progress-fill { border-radius:20px; box-shadow:0 2px 7px rgba(40,45,80,.14); }
+.app-shell.theme-dark .stat-card { background:linear-gradient(145deg,#292C43 0%,#202236 78%) !important; box-shadow:0 8px 22px rgba(0,0,0,.12); }
+.app-shell.theme-dark .bar-chart { background-image:linear-gradient(to top,rgba(210,214,240,.09) 1px,transparent 1px); }
+.app-shell.theme-dark .category-list .progress-track { background:#383B53; }
+
+/* Support Centre */
+.support-hero { display:flex; align-items:center; gap:18px; padding:22px 24px; margin-bottom:17px; border:1px solid #E7E3FF; border-radius:17px; background:linear-gradient(115deg,#F0EDFF 0%,#FDF1F7 52%,#E8F8F5 100%); }
+.support-hero-icon { width:55px; height:55px; display:grid; place-items:center; border-radius:17px; background:linear-gradient(140deg,#7657F6,#B06AF2); color:#fff; font-size:27px; box-shadow:0 8px 18px rgba(118,87,246,.24); flex:0 0 55px; }
+.support-eyebrow { color:#7866D8; font-size:10px; font-weight:800; letter-spacing:1.4px; }
+.support-hero h2 { margin:4px 0; color:#302B54; font:800 22px Manrope,sans-serif; }
+.support-hero p { margin:0; color:#74758E; font-size:12px; line-height:1.6; }
+.support-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 15px; }
+.support-tabs button { display:inline-flex; align-items:center; gap:8px; border:1px solid #E8E8F0; border-radius:10px; padding:10px 14px; background:#fff; color:#73798D; font:700 12px 'DM Sans',sans-serif; }
+.support-tabs button:hover { border-color:#BEB6F7; color:#6656D5; }
+.support-tabs button.active { background:#7667E8; border-color:#7667E8; color:#fff; box-shadow:0 5px 14px rgba(118,103,232,.2); }
+.support-count { display:inline-grid; place-items:center; min-width:20px; height:20px; padding:0 5px; border-radius:20px; background:#F0EEFF; color:#6656D5; font-size:10px; }
+.support-tabs button.active .support-count { background:rgba(255,255,255,.2); color:#fff; }
+.support-form-panel,.support-requests-panel { padding:22px; }
+.support-form-panel .form-field textarea { width:100%; min-height:150px; resize:vertical; padding:11px 12px; border:1px solid #E9EAF1; border-radius:9px; background:#FAFAFC; color:#35394D; outline:none; font:13px 'DM Sans',sans-serif; }
+.support-form-panel .form-field textarea:focus { border-color:#9A8FF0; }
+.support-character-count { display:block; text-align:right; color:#969BAC; font-size:10px; margin-top:-2px; }
+.support-privacy-note { padding:12px 14px; border-radius:10px; background:#F2F8FF; border:1px solid #DCEBFA; color:#59708C; font-size:11px; line-height:1.6; }
+.support-privacy-note strong { color:#365D84; }
+.support-submit-row { display:flex; justify-content:flex-end; margin-top:16px; }
+.support-notice { border-radius:9px; padding:11px 13px; margin:13px 0 0; font-size:12px; line-height:1.5; }
+.support-notice.success { background:#E8F8F1; color:#187B5A; }
+.support-notice.error { background:#FFF0F0; color:#B8324A; }
+.support-delivery-note { color:#9297A8; font-size:11px; line-height:1.6; margin:12px 2px 0; }
+.support-request-list { display:grid; gap:12px; }
+.support-request-card { padding:16px; border:1px solid #EAEAF2; border-radius:13px; background:linear-gradient(140deg,#fff 0%,#FBFAFF 100%); }
+.support-request-top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.support-request-top h3 { margin:8px 0 4px; color:#30354A; font:800 14px Manrope,sans-serif; }
+.support-request-top p { margin:0; color:#9297A8; font-size:10px; line-height:1.5; }
+.support-type-pill { display:inline-flex; border-radius:30px; padding:5px 9px; font-size:9px; font-weight:800; }
+.support-type-pill.issue { background:#FFF0F1; color:#C84D63; }
+.support-type-pill.contact { background:#EEF0FF; color:#6656D5; }
+.support-request-message { margin:13px 0 0; padding-top:12px; border-top:1px solid #F0F0F5; color:#626A7F; font-size:12px; line-height:1.7; white-space:pre-wrap; overflow-wrap:anywhere; }
+        .support-admin-reply { margin-top:14px; padding:13px 15px; border:1px solid #D9F0E7; border-radius:11px; background:#F0FAF5; }
+        .support-admin-reply strong { color:#187B5A; font-size:11px; }
+        .support-admin-reply p { margin:7px 0; color:#385E52; font-size:12px; line-height:1.65; white-space:pre-wrap; }
+        .support-admin-reply small { color:#7C9B8F; font-size:10px; }
+        .status-pill.info { background:#EAF3FF; color:#2866B2; }
+        .app-shell.theme-dark .support-admin-reply { background:#193B35; border-color:#285B4E; }
+        .app-shell.theme-dark .support-admin-reply strong { color:#8ADCC4; }
+        .app-shell.theme-dark .support-admin-reply p { color:#C2E8DB; }
+        .app-shell.theme-dark .support-admin-reply small { color:#8DB9A9; }
+        .app-shell.theme-dark .status-pill.info { background:#203B5A; color:#A9D0FF; }
+.support-empty-state { display:grid; justify-items:center; gap:8px; padding:36px 15px; text-align:center; color:#8A90A2; }
+.support-empty-state > span { width:46px; height:46px; display:grid; place-items:center; border-radius:15px; background:#F0EEFF; color:#7667E8; font-size:22px; }
+.support-empty-state strong { color:#454B61; font-size:14px; }
+.support-empty-state p { margin:0 0 5px; font-size:11px; }
+.app-shell.theme-dark .support-hero { background:linear-gradient(115deg,#302C50 0%,#3B293F 52%,#1F3C3A 100%); border-color:#484365; }
+.app-shell.theme-dark .support-hero h2,.app-shell.theme-dark .support-empty-state strong { color:#F1F2FA; }
+.app-shell.theme-dark .support-hero p,.app-shell.theme-dark .support-request-top p,.app-shell.theme-dark .support-delivery-note { color:#AEB3C8; }
+.app-shell.theme-dark .support-eyebrow { color:#C0B8FF; }
+.app-shell.theme-dark .support-tabs button { background:#24273B; color:#C5C9D9; border-color:#3A3E58; }
+.app-shell.theme-dark .support-tabs button.active { background:#6658D5; border-color:#8073ED; color:#fff; }
+.app-shell.theme-dark .support-count { background:#302C50; color:#D0CAFF; }
+.app-shell.theme-dark .support-tabs button.active .support-count { background:rgba(255,255,255,.2); color:#fff; }
+.app-shell.theme-dark .support-form-panel .form-field textarea { background:#292C43; color:#F1F2FA; border-color:#3A3E58; }
+.app-shell.theme-dark .support-privacy-note { background:#202E45; border-color:#344A69; color:#C1D6EE; }
+.app-shell.theme-dark .support-privacy-note strong { color:#E0EDFC; }
+.app-shell.theme-dark .support-request-card { background:linear-gradient(140deg,#202236 0%,#25243D 100%); border-color:#3A3E58; }
+.app-shell.theme-dark .support-request-top h3 { color:#F1F2FA; }
+.app-shell.theme-dark .support-request-message { color:#C7CBD9; border-color:#353951; }
+.app-shell.theme-dark .support-type-pill.issue { background:#482A39; color:#FFB5C2; }
+.app-shell.theme-dark .support-type-pill.contact { background:#302C50; color:#D0CAFF; }
+.app-shell.theme-dark .support-notice.success { background:#173D38; color:#8ADCC4; }
+.app-shell.theme-dark .support-notice.error { background:#482A39; color:#FFB5C2; }
+.app-shell.theme-dark .support-empty-state > span { background:#302C50; color:#D0CAFF; }
+@media(max-width:650px) {
+  .support-hero { align-items:flex-start; padding:17px; }
+  .support-hero-icon { width:44px; height:44px; flex-basis:44px; border-radius:13px; }
+  .support-hero h2 { font-size:19px; }
+  .support-form-panel,.support-requests-panel { padding:15px; }
+  .support-request-top { flex-direction:column; }
+  .support-tabs button { flex:1 1 auto; justify-content:center; }
+}
 `
 
 const DEFAULT_CATEGORIES = [
@@ -996,7 +1110,7 @@ const DEMO_BANK_PROVIDERS = [
   },
 ];
 
-const COLORS = ["#7667E8", "#36A891", "#E9A34B", "#EA789B", "#5C9BE8", "#9A85D5"];
+const COLORS = ["#7657F6", "#14B8A6", "#F59E0B", "#F472B6", "#3B82F6", "#F97316", "#8B5CF6", "#22C55E"];
 const toLocalDateInput = (date = new Date()) => {
   const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
   return local.toISOString().slice(0, 10);
@@ -1353,6 +1467,43 @@ function stableHash(value) {
   return (hash >>> 0).toString(16).padStart(8, "0");
 }
 
+const SUPPORT_ADMIN_UID = "Brqb0uSw06U50SeBYMm9U4ln9DT2";
+
+const NAV_GROUPS = [
+  { name: "Overview", icon: "▦", items: [{ name: "Dashboard", icon: "▦" }] },
+  { name: "Money Management", icon: "◈", items: [
+    { name: "Accounts", icon: "▣" },
+    { name: "Bank Sync Demo", icon: "⇄" },
+    { name: "Transactions", icon: "↕" },
+    { name: "Statement Import", icon: "⇧" },
+    { name: "Categories", icon: "◇" },
+  ] },
+  { name: "Planning", icon: "◫", items: [
+    { name: "Budgets", icon: "◫" },
+    { name: "Savings Goals", icon: "◎" },
+    { name: "Recurring", icon: "↻" },
+    { name: "Reminders", icon: "◷" },
+  ] },
+  { name: "Analysis & Insights", icon: "▥", items: [
+    { name: "Reports", icon: "▥" },
+    { name: "Insights", icon: "✦" },
+    { name: "Financial Health", icon: "♥" },
+    { name: "Forecast", icon: "⌁" },
+    { name: "Achievements", icon: "★" },
+  ] },
+  { name: "Tools & Collaboration", icon: "✧", items: [
+    { name: "Split Expenses", icon: "⇄" },
+    { name: "Shared Budgets", icon: "♧" },
+    { name: "Assistant", icon: "✧" },
+    { name: "Receipt Scanner", icon: "▧" },
+  ] },
+  { name: "Account & Help", icon: "◎", items: [
+    { name: "Profile", icon: "◎" },
+    { name: "Settings", icon: "⚙" },
+    { name: "Support Centre", icon: "♡" },
+  ] },
+];
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
@@ -1450,6 +1601,22 @@ function App() {
   const [ratesError, setRatesError] = useState("");
   const [settingsReady, setSettingsReady] = useState(false);
   const [activePage, setActivePage] = useState("Dashboard");
+  const [expandedNavGroups, setExpandedNavGroups] = useState({ "Money Management": true });
+  const [supportMode, setSupportMode] = useState("issue");
+  const [supportForm, setSupportForm] = useState({ category: "Bug or error", subject: "", message: "" });
+  const [supportRequests, setSupportRequests] = useState([]);
+  const [supportRequestsLoading, setSupportRequestsLoading] = useState(false);
+  const [supportRequestsError, setSupportRequestsError] = useState("");
+  const [adminSupportRequests, setAdminSupportRequests] = useState([]);
+  const [adminSupportLoading, setAdminSupportLoading] = useState(false);
+  const [adminSupportError, setAdminSupportError] = useState("");
+  const [adminReplyDrafts, setAdminReplyDrafts] = useState({});
+  const [adminStatusDrafts, setAdminStatusDrafts] = useState({});
+  const [adminSavingRequestId, setAdminSavingRequestId] = useState("");
+  const [adminSupportFilter, setAdminSupportFilter] = useState("All");
+  const [adminSupportNotice, setAdminSupportNotice] = useState(null);
+  const [supportSubmitting, setSupportSubmitting] = useState(false);
+  const [supportNotice, setSupportNotice] = useState(null);
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
@@ -1622,6 +1789,60 @@ function App() {
     });
     return () => unsubscribe();
   }, []);
+
+  // Support requests are private to the signed-in user and update in real time.
+  useEffect(() => {
+    if (!currentUser) {
+      setSupportRequests([]);
+      setSupportRequestsLoading(false);
+      setSupportRequestsError("");
+      return undefined;
+    }
+    setSupportRequestsLoading(true);
+    setSupportRequestsError("");
+    const requestsRef = collection(db, "users", currentUser.uid, "supportRequests");
+    return onSnapshot(requestsRef, (snapshot) => {
+      const rows = snapshot.docs.map((item) => ({ ...item.data(), id: item.id }));
+      rows.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+      setSupportRequests(rows);
+      setSupportRequestsLoading(false);
+      setSupportRequestsError("");
+    }, (error) => {
+      console.error("Support requests listener error:", error);
+      setSupportRequestsLoading(false);
+      setSupportRequestsError("Your request history could not be loaded. Check your connection and Firestore rules.");
+    });
+  }, [currentUser]);
+
+  // Only the configured administrator can read the support collection group.
+  const isSupportAdmin = currentUser?.uid === SUPPORT_ADMIN_UID;
+  useEffect(() => {
+    if (!currentUser || currentUser.uid !== SUPPORT_ADMIN_UID || activePage !== "Admin Support") {
+      setAdminSupportRequests([]);
+      setAdminSupportLoading(false);
+      setAdminSupportError("");
+      return undefined;
+    }
+    setAdminSupportLoading(true);
+    setAdminSupportError("");
+    const allRequestsQuery = query(collectionGroup(db, "supportRequests"));
+    return onSnapshot(allRequestsQuery, (snapshot) => {
+      const rows = snapshot.docs.map((item) => ({
+        ...item.data(),
+        id: item.id,
+        ref: item.ref,
+        userId: item.ref.parent.parent?.id || item.data().userId || "",
+      }));
+      rows.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+      setAdminSupportRequests(rows);
+      setAdminSupportLoading(false);
+      setAdminSupportError("");
+    }, (error) => {
+      console.error("Admin support listener error:", error);
+      setAdminSupportLoading(false);
+      setAdminSupportError("Support inbox could not be loaded. Check that the updated Firestore rules have been published and that you are signed in with the administrator account.");
+    });
+  }, [currentUser, activePage]);
 
   // User transactions are read from Firestore in real time.
   useEffect(() => {
@@ -2256,7 +2477,52 @@ function App() {
       setDraftDateFormat(dateFormat);
       setDraftCurrencyCode(currencyCode);
     }
+    const targetGroup = NAV_GROUPS.find((group) => group.items.some((item) => item.name === page));
+    if (targetGroup) {
+      setExpandedNavGroups((previous) => ({ ...previous, [targetGroup.name]: true }));
+    }
     setActivePage(page);
+  };
+
+  const submitSupportRequest = async (event) => {
+    event.preventDefault();
+    if (!currentUser || supportSubmitting) return;
+    const subject = supportForm.subject.trim();
+    const message = supportForm.message.trim();
+    if (!subject || !message) {
+      setSupportNotice({ type: "error", message: "Please enter both a subject and a message." });
+      return;
+    }
+    if (subject.length > 100 || message.length > 3000) {
+      setSupportNotice({ type: "error", message: "Please keep the subject under 100 characters and the message under 3,000 characters." });
+      return;
+    }
+
+    setSupportSubmitting(true);
+    setSupportNotice(null);
+    try {
+      await addDoc(collection(db, "users", currentUser.uid, "supportRequests"), {
+        type: supportMode === "contact" ? "contact" : "issue",
+        category: supportMode === "contact" ? "General enquiry" : supportForm.category,
+        subject,
+        message,
+        contactName: profileName || currentUser.displayName || "",
+        contactEmail: currentUser.email || "",
+        userId: currentUser.uid,
+        status: "Open",
+        adminReply: "",
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+      setSupportForm({ category: "Bug or error", subject: "", message: "" });
+      setSupportMode("requests");
+      setSupportNotice({ type: "success", message: "Your message has been saved to your private FinPilot support history." });
+    } catch (error) {
+      console.error("Support request submission error:", error);
+      setSupportNotice({ type: "error", message: "We couldn't save your message. Check your internet connection and Firebase security rules, then try again." });
+    } finally {
+      setSupportSubmitting(false);
+    }
   };
 
   const openAddModal = () => {
@@ -4159,29 +4425,36 @@ function App() {
     } finally { setCsvImportBusy(false); }
   };
 
-  const navItems = [
-    { name: "Dashboard", icon: "▦" },
-    { name: "Accounts", icon: "▣" },
-    { name: "Bank Sync Demo", icon: "⇄" },
-    { name: "Transactions", icon: "↕" },
-    { name: "Statement Import", icon: "⇧" },
-    { name: "Achievements", icon: "★" },
-    { name: "Budgets", icon: "◫" },
-    { name: "Reports", icon: "▥" },
-    { name: "Savings Goals", icon: "◎" },
-    { name: "Insights", icon: "✦" },
-    { name: "Recurring", icon: "↻" },
-    { name: "Reminders", icon: "◷" },
-    { name: "Financial Health", icon: "♥" },
-    { name: "Forecast", icon: "⌁" },
-    { name: "Split Expenses", icon: "⇄" },
-    { name: "Shared Budgets", icon: "♧" },
-    { name: "Assistant", icon: "✧" },
-    { name: "Receipt Scanner", icon: "▧" },
-    { name: "Categories", icon: "◇" },
-    { name: "Profile", icon: "◎" },
-    { name: "Settings", icon: "⚙" },
-  ];
+  const saveAdminSupportUpdate = async (request) => {
+    if (!isSupportAdmin || !request?.ref || adminSavingRequestId) return;
+    const reply = String(adminReplyDrafts[request.id] ?? request.adminReply ?? "").trim();
+    const status = adminStatusDrafts[request.id] || (request.status === "Submitted" ? "Open" : request.status || "Open");
+    if (reply.length > 3000) {
+      setAdminSupportNotice({ type: "error", message: "Keep replies under 3,000 characters." });
+      return;
+    }
+    setAdminSavingRequestId(request.id);
+    setAdminSupportNotice(null);
+    try {
+      await updateDoc(request.ref, {
+        status,
+        adminReply: reply,
+        repliedByEmail: currentUser.email || "",
+        repliedAt: reply ? serverTimestamp() : null,
+        updatedAt: serverTimestamp(),
+      });
+      setAdminSupportNotice({ type: "success", message: `Saved response and status for “${request.subject || "support request"}”. The customer will see the update in My Requests.` });
+    } catch (error) {
+      console.error("Admin support update error:", error);
+      setAdminSupportNotice({ type: "error", message: "Could not save this response. Confirm that the administrator Firestore rules are published." });
+    } finally {
+      setAdminSavingRequestId("");
+    }
+  };
+
+  const navGroups = NAV_GROUPS.map((group) => group.name === "Account & Help" && isSupportAdmin
+    ? { ...group, items: [...group.items, { name: "Admin Support", icon: "✉" }] }
+    : group);
   const pageDescription = {
     Dashboard: "Here's what's happening with your money.",
     Accounts: "Manage wallets, bank accounts, opening balances and transfers.",
@@ -4204,6 +4477,8 @@ function App() {
     Categories: "Organise your income and expense categories.",
     Profile: "Manage your personal account information.",
     Settings: "Personalise how FinPilot looks and displays information.",
+    "Support Centre": "Report an issue or send a message to the FinPilot team.",
+    "Admin Support": "Review customer messages, reply and manage request status.",
   };
 
   const handleLogout = async () => {
@@ -4231,13 +4506,45 @@ ${CSS_STYLES}
             <div className="brand-mark">F</div>
             <div className="brand-name">Fin<span>Pilot</span></div>
           </div>
-          <div className="nav-label">MAIN MENU</div>
-          <nav className="nav-list">
-            {navItems.map((item) => (
-              <button key={item.name} className={`nav-button ${activePage === item.name ? "active" : ""}`} onClick={() => navigateToPage(item.name)}>
-                <span className="nav-icon">{item.icon}</span>{item.name}
-              </button>
-            ))}
+          <div className="nav-label">WORKSPACE</div>
+          <nav className="nav-list" aria-label="Main navigation">
+            {navGroups.map((group) => {
+              const expanded = Boolean(expandedNavGroups[group.name]);
+              const isSingle = group.items.length === 1;
+              if (isSingle) {
+                const item = group.items[0];
+                return (
+                  <div className="nav-group nav-group-single" key={group.name}>
+                    <button type="button" className={`nav-button ${activePage === item.name ? "active" : ""}`} onClick={() => navigateToPage(item.name)}>
+                      <span className="nav-icon">{item.icon}</span><span>{item.name}</span>
+                    </button>
+                  </div>
+                );
+              }
+              return (
+                <div className="nav-group" key={group.name}>
+                  <button
+                    type="button"
+                    className={`nav-group-toggle ${group.items.some((item) => item.name === activePage) ? "contains-active" : ""}`}
+                    onClick={() => setExpandedNavGroups((previous) => ({ ...previous, [group.name]: !expanded }))}
+                    aria-expanded={expanded}
+                  >
+                    <span className="nav-group-icon">{group.icon}</span>
+                    <span className="nav-group-name">{group.name}</span>
+                    <span className={`nav-group-chevron ${expanded ? "expanded" : ""}`} aria-hidden="true">⌄</span>
+                  </button>
+                  {expanded && (
+                    <div className="nav-sublist">
+                      {group.items.map((item) => (
+                        <button key={item.name} type="button" className={`nav-button nav-sub-button ${activePage === item.name ? "active" : ""}`} onClick={() => navigateToPage(item.name)}>
+                          <span className="nav-icon">{item.icon}</span><span>{item.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </nav>
           <div className="sidebar-bottom">
             <div className="help-card">
@@ -4300,13 +4607,13 @@ ${CSS_STYLES}
                       </div>
                     ))}
                   </div>
-                  <div className="chart-legend"><span className="legend-item"><i className="legend-dot" style={{ background: "#B9AFE9" }} /> Income</span><span className="legend-item"><i className="legend-dot" style={{ background: "#7667E8" }} /> Expenses</span></div>
+                  <div className="chart-legend"><span className="legend-item"><i className="legend-dot" style={{ background: "#10B981" }} /> Income</span><span className="legend-item"><i className="legend-dot" style={{ background: "#F97373" }} /> Expenses</span></div>
                 </section>
                 <section className="panel">
                   <div className="section-heading"><div><h2>Spending by Category</h2><p>Where your money goes</p></div></div>
                   {categoryTotals.length ? <div className="category-list">{categoryTotals.slice(0, 5).map((item, index) => (
                     <div key={item.name}>
-                      <div className="category-row"><div className="category-icon">{getCategoryIcon(item.name)}</div><div><span className="category-name">{item.name}</span><span className="category-meta">{((item.amount / (expenses || 1)) * 100).toFixed(1)}% of expenses</span></div><span className="category-amount">{displayMoney(item.amount)}</span></div>
+                      <div className="category-row"><div className="category-icon" style={{ color: COLORS[index % COLORS.length], background: `${COLORS[index % COLORS.length]}18` }}>{getCategoryIcon(item.name)}</div><div><span className="category-name">{item.name}</span><span className="category-meta">{((item.amount / (expenses || 1)) * 100).toFixed(1)}% of expenses</span></div><span className="category-amount">{displayMoney(item.amount)}</span></div>
                       <div className="progress-track"><div className="progress-fill" style={{ width: `${expenses ? item.amount / expenses * 100 : 0}%`, background: COLORS[index % COLORS.length] }} /></div>
                     </div>
                   ))}</div> : <div className="empty-state">No expense data yet.</div>}
@@ -4839,6 +5146,173 @@ ${CSS_STYLES}
               </form>
             </section>
           )}
+
+          {activePage === "Admin Support" && isSupportAdmin && (
+            <>
+              <section className="support-hero">
+                <div className="support-hero-icon">✉</div>
+                <div>
+                  <span className="support-eyebrow">ADMINISTRATOR WORKSPACE</span>
+                  <h2>Customer Support Inbox</h2>
+                  <p>Review customer issues and enquiries, reply to customers and update their request status.</p>
+                </div>
+              </section>
+              <section className="panel support-requests-panel">
+                <div className="section-heading">
+                  <div><h2>All customer requests</h2><p>{adminSupportRequests.length} request(s) across FinPilot accounts.</p></div>
+                  <select className="filter-control" value={adminSupportFilter} onChange={(event) => setAdminSupportFilter(event.target.value)} aria-label="Filter support requests">
+                    <option>All</option><option>Open</option><option>In Progress</option><option>Resolved</option>
+                  </select>
+                </div>
+                {adminSupportNotice && <p className={`support-notice ${adminSupportNotice.type}`} role="status">{adminSupportNotice.message}</p>}
+                {adminSupportError && <p className="support-notice error" role="alert">{adminSupportError}</p>}
+                {adminSupportLoading ? <div className="empty-state">Loading customer requests…</div> : (() => {
+                  const visibleRequests = adminSupportRequests.filter((request) => adminSupportFilter === "All" || (request.status === "Submitted" ? "Open" : request.status || "Open") === adminSupportFilter);
+                  return visibleRequests.length ? (
+                    <div className="support-request-list">
+                      {visibleRequests.map((request) => {
+                        const status = adminStatusDrafts[request.id] || (request.status === "Submitted" ? "Open" : request.status || "Open");
+                        const reply = adminReplyDrafts[request.id] ?? request.adminReply ?? "";
+                        return (
+                          <article className="support-request-card" key={request.id}>
+                            <div className="support-request-top">
+                              <div>
+                                <span className={`support-type-pill ${request.type === "contact" ? "contact" : "issue"}`}>{request.type === "contact" ? "Contact message" : "Issue report"}</span>
+                                <h3>{request.subject || "Untitled request"}</h3>
+                                <p>{request.contactName || "FinPilot customer"} · {request.contactEmail || "No email supplied"} · {request.createdAt?.toDate ? request.createdAt.toDate().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) : "Date unavailable"}</p>
+                                <p>Customer UID: {request.userId || "Unavailable"}</p>
+                              </div>
+                              <span className={`status-pill ${status === "Resolved" ? "success" : status === "In Progress" ? "info" : "warning"}`}>{status}</span>
+                            </div>
+                            <p className="support-request-message">{request.message}</p>
+                            <div className="form-grid" style={{ marginTop: 15 }}>
+                              <div className="form-field">
+                                <label htmlFor={`support-status-${request.id}`}>Request status</label>
+                                <select id={`support-status-${request.id}`} value={status} onChange={(event) => setAdminStatusDrafts((old) => ({ ...old, [request.id]: event.target.value }))}>
+                                  <option>Open</option><option>In Progress</option><option>Resolved</option>
+                                </select>
+                              </div>
+                              <div className="form-field">
+                                <label>Customer reply email</label>
+                                <input readOnly value={request.contactEmail || "No email supplied"} />
+                              </div>
+                            </div>
+                            <div className="form-field" style={{ marginTop: 12 }}>
+                              <label htmlFor={`support-reply-${request.id}`}>Your reply (visible in customer's My Requests)</label>
+                              <textarea id={`support-reply-${request.id}`} rows={4} maxLength={3000} value={reply} onChange={(event) => setAdminReplyDrafts((old) => ({ ...old, [request.id]: event.target.value }))} placeholder="Write a helpful response to the customer…" />
+                              <small className="support-character-count">{reply.length}/3000 characters</small>
+                            </div>
+                            <div className="support-submit-row">
+                              <button type="button" className="primary-button" disabled={adminSavingRequestId === request.id} onClick={() => saveAdminSupportUpdate(request)}>{adminSavingRequestId === request.id ? "Saving…" : "Save reply & status"}</button>
+                            </div>
+                          </article>
+                        );
+                      })}
+                    </div>
+                  ) : <div className="support-empty-state"><span>✓</span><strong>No requests in this view</strong><p>Try another status filter or check again when a customer submits a request.</p></div>;
+                })()}
+              </section>
+              <p className="support-delivery-note">Replies are stored in Firestore and displayed in the customer's My Requests page. This does not send an email notification; contact the customer by email separately if an immediate notification is needed.</p>
+            </>
+          )}
+
+          {activePage === "Support Centre" && (
+            <>
+              <section className="support-hero">
+                <div className="support-hero-icon">♡</div>
+                <div>
+                  <span className="support-eyebrow">FINPILOT HELP DESK</span>
+                  <h2>How can we help?</h2>
+                  <p>Report a problem, ask a question or review messages you've sent from your account.</p>
+                </div>
+              </section>
+
+              <div className="support-tabs" role="tablist" aria-label="Support options">
+                <button type="button" role="tab" aria-selected={supportMode === "issue"} className={supportMode === "issue" ? "active" : ""} onClick={() => { setSupportMode("issue"); setSupportNotice(null); }}>⚑ Report an Issue</button>
+                <button type="button" role="tab" aria-selected={supportMode === "contact"} className={supportMode === "contact" ? "active" : ""} onClick={() => { setSupportMode("contact"); setSupportNotice(null); }}>✉ Contact Us</button>
+                <button type="button" role="tab" aria-selected={supportMode === "requests"} className={supportMode === "requests" ? "active" : ""} onClick={() => { setSupportMode("requests"); setSupportNotice(null); }}>▤ My Requests <span className="support-count">{supportRequests.length}</span></button>
+              </div>
+
+              {supportMode === "issue" || supportMode === "contact" ? (
+                <section className="panel support-form-panel">
+                  <div className="section-heading">
+                    <div>
+                      <h2>{supportMode === "issue" ? "Report an issue" : "Contact the FinPilot team"}</h2>
+                      <p>{supportMode === "issue" ? "Tell us what went wrong and what you were doing when it happened." : "Send a general question, suggestion or feedback message."}</p>
+                    </div>
+                    <span className="status-pill">Private to your account</span>
+                  </div>
+                  <form onSubmit={submitSupportRequest}>
+                    {supportMode === "issue" && (
+                      <div className="form-field">
+                        <label htmlFor="support-category">Issue type</label>
+                        <select id="support-category" value={supportForm.category} onChange={(event) => setSupportForm((old) => ({ ...old, category: event.target.value }))}>
+                          <option>Bug or error</option>
+                          <option>Sign-in or account access</option>
+                          <option>Transaction or balance issue</option>
+                          <option>Import or export issue</option>
+                          <option>Display or navigation issue</option>
+                          <option>Feature request</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                    )}
+                    <div className="form-grid">
+                      <div className="form-field">
+                        <label htmlFor="support-name">Your name</label>
+                        <input id="support-name" value={profileName || currentUser.displayName || ""} readOnly placeholder="Add your name in Profile" />
+                      </div>
+                      <div className="form-field">
+                        <label htmlFor="support-email">Reply email</label>
+                        <input id="support-email" type="email" value={currentUser.email || ""} readOnly />
+                      </div>
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor="support-subject">Subject *</label>
+                      <input id="support-subject" required maxLength={100} value={supportForm.subject} onChange={(event) => setSupportForm((old) => ({ ...old, subject: event.target.value }))} placeholder={supportMode === "issue" ? "e.g. Dashboard balance is not updating" : "e.g. Question about account settings"} />
+                    </div>
+                    <div className="form-field">
+                      <label htmlFor="support-message">{supportMode === "issue" ? "Describe the issue *" : "Your message *"}</label>
+                      <textarea id="support-message" required rows={7} maxLength={3000} value={supportForm.message} onChange={(event) => setSupportForm((old) => ({ ...old, message: event.target.value }))} placeholder={supportMode === "issue" ? "What happened? What did you expect to happen? Include the steps to reproduce it, but do not include passwords, PINs or full financial account details." : "Write your question, feedback or suggestion here. Do not include passwords, PINs or full financial account details."} />
+                      <small className="support-character-count">{supportForm.message.length}/3000 characters</small>
+                    </div>
+                    <div className="support-privacy-note"><strong>Privacy note:</strong> Your message is saved under your signed-in FinPilot account. Do not include passwords, card PINs, bank login details or other sensitive financial information.</div>
+                    {supportNotice && <p className={`support-notice ${supportNotice.type}`} role="status">{supportNotice.message}</p>}
+                    <div className="support-submit-row">
+                      <button type="submit" className="primary-button" disabled={supportSubmitting}>{supportSubmitting ? "Sending…" : supportMode === "issue" ? "Submit Issue" : "Send Message"}</button>
+                    </div>
+                  </form>
+                </section>
+              ) : (
+                <section className="panel support-requests-panel">
+                  <div className="section-heading"><div><h2>Your Support History</h2><p>Messages submitted from this FinPilot account.</p></div><span className="status-pill">{supportRequests.length} total</span></div>
+                  {supportNotice && <p className={`support-notice ${supportNotice.type}`} role="status">{supportNotice.message}</p>}
+                  {supportRequestsError && <p className="support-notice error" role="alert">{supportRequestsError}</p>}
+                  {supportRequestsLoading ? <div className="empty-state">Loading your requests…</div> : supportRequests.length ? (
+                    <div className="support-request-list">
+                      {supportRequests.map((request) => (
+                        <article className="support-request-card" key={request.id}>
+                          <div className="support-request-top">
+                            <div>
+                              <span className={`support-type-pill ${request.type === "contact" ? "contact" : "issue"}`}>{request.type === "contact" ? "Contact message" : "Issue report"}</span>
+                              <h3>{request.subject || "Untitled request"}</h3>
+                              <p>{request.category || "General enquiry"} · {request.createdAt?.toDate ? request.createdAt.toDate().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) : "Just submitted"}</p>
+                            </div>
+                            <span className={`status-pill ${(request.status === "Resolved") ? "success" : (request.status === "In Progress") ? "info" : "warning"}`}>{request.status === "Submitted" ? "Open" : request.status || "Open"}</span>
+                          </div>
+                          <p className="support-request-message">{request.message}</p>
+                          {request.adminReply && <div className="support-admin-reply"><strong>FinPilot team response</strong><p>{request.adminReply}</p><small>{request.repliedAt?.toDate ? request.repliedAt.toDate().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) : "Response updated"}</small></div>}
+                        </article>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="support-empty-state"><span>✉</span><strong>No support requests yet</strong><p>Your issue reports and contact messages will appear here after submission.</p><button type="button" className="secondary-button" onClick={() => { setSupportMode("issue"); setSupportNotice(null); }}>Report your first issue</button></div>
+                  )}
+                </section>
+              )}
+              <p className="support-delivery-note">Your requests are saved privately to your FinPilot account. When the FinPilot team replies or changes the status, the update appears here. Email notifications are not enabled.</p>
+            </>
+          )}
         </main>
       </div>
 
@@ -5059,7 +5533,7 @@ function MoneyInput({ id, value, onChange, currencyCode = "INR", ariaLabel, comp
 }
 
 function StatCard({ label, value, icon, iconBg, color, foot }) {
-  return <div className="stat-card"><div className="stat-top"><span className="stat-label">{label}</span><span className="stat-icon" style={{ background: iconBg, color }}>{icon}</span></div><div className="stat-value">{value}</div><div className="stat-foot">{foot}</div></div>;
+  return <div className="stat-card" style={{ "--stat-accent": color || "#7667E8", "--stat-tint": iconBg || "#EFEDFF" }}><div className="stat-top"><span className="stat-label">{label}</span><span className="stat-icon" style={{ background: iconBg, color }}>{icon}</span></div><div className="stat-value">{value}</div><div className="stat-foot">{foot}</div></div>;
 }
 
 export default App;
